@@ -1,50 +1,27 @@
-//load React library in order to create components
 import React, {Component} from 'react'
 
-//required stuff in order to create ReactVR application
 import {
   AppRegistry,
   asset,
-  Pano,
+  StyleSheet,
   View,
-  Text,
-  StyleSheet
+  Pano,
+  Text
 } from 'react-vr'
 
 
-
-
-
-class Row extends Component {
+export default class Tour extends Component {
 
   render(){
     return (
-      <View
-        style={[
-          {backgroundColor: this.props.color},
-          styles.row
-        ]}>
-        <Text style={styles.text}>
-          {this.props.color}
-        </Text>
-      </View>
-    )
-  }
+      <View>
+        <Pano source={asset('pool.jpg')}/>
 
-}
-
-
-
-export default class Basics extends Component {
-
-  render(){
-    return (
-      <View style={styles.container}>
-        <Pano source={asset('room.jpg')}></Pano>
-
-        <Row color={'red'}/>
-        <Row color={'blue'}/>
-        <Row color={'green'}/>
+        <View style={styles.menuButton}>
+          <Text style={styles.menuButtonText}>
+            Open Menu
+          </Text>
+        </View>
 
       </View>
     )
@@ -54,23 +31,27 @@ export default class Basics extends Component {
 
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 0.2,
-    textAlign: 'center'
-  },
-  row: {
-    width: 0.5,
-    height: 0.3,
-    margin: 0.1
-  },
-  container: {
-    flex: 1,
-    width: 2,
-    flexDirection: 'row',
+  menuButton: {
     transform: [
-      {translate: [-1,0,-3]}
-    ]
+      {translate: [0,0,-4]}
+    ],
+    backgroundColor: 'white',
+    width: 0.8,
+    height: 0.8,
+    borderColor: 'grey',
+    borderWidth: 0.05,
+    borderRadius: 0.2,
+    borderColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  menuButtonText: {
+    textAlign: 'center',
+    fontSize: 0.2,
+    color: 'black'
   }
 })
 
-AppRegistry.registerComponent('Basics', ()=>Basics)
+
+AppRegistry.registerComponent('Tour',()=>Tour)

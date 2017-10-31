@@ -6,7 +6,7 @@
 import {VRInstance} from 'react-vr-web';
 
 function init(bundle, parent, options) {
-  const vr = new VRInstance(bundle, 'Basics', parent, {
+  const vr = new VRInstance(bundle, 'Tour', parent, {
     // Add custom options here
     enableHotReload: true,
     ...options,
