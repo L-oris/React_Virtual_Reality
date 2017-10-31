@@ -12,14 +12,34 @@ import {
 
 export default class Tour extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      showMenu: false
+    }
+    this.toggleMenu = this.toggleMenu.bind(this)
+  }
+
+  toggleMenu(){
+    this.setState({
+      showMenu: !this.state.showMenu
+    })
+  }
+
   render(){
+
+    let menuButtonText = this.state.showMenu ? 'Open Menu' : 'Close Menu'
+
     return (
       <View>
         <Pano source={asset('pool.jpg')}/>
 
-        <View style={styles.menuButton}>
+        <View
+          onEnter={this.toggleMenu}
+          style={styles.menuButton}
+        >
           <Text style={styles.menuButtonText}>
-            Open Menu
+            {menuButtonText}
           </Text>
         </View>
 
