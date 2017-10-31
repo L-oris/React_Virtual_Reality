@@ -10,6 +10,22 @@ import {
 } from 'react-vr'
 
 
+const places = [
+  {
+    title: 'Winter Snow'
+  },
+  {
+    title: 'Resort'
+  },
+  {
+    title: 'Island Garden'
+  },
+  {
+    title: 'Abstract'
+  }
+]
+
+
 export default class Tour extends Component {
 
   constructor(props){
@@ -18,6 +34,7 @@ export default class Tour extends Component {
       showMenu: false
     }
     this.toggleMenu = this.toggleMenu.bind(this)
+    this.renderOptions = this.renderOptions.bind(this)
   }
 
   toggleMenu(){
@@ -26,9 +43,28 @@ export default class Tour extends Component {
     })
   }
 
+  renderOptions(){
+    return (
+      places.map((place,index)=>{
+        return (
+          <View
+            key={index}
+            style={styles.menuItem}>
+            <Text
+              style={styles.menuItemText}>
+              {place.title}
+            </Text>
+          </View>
+        )
+      })
+    )
+  }
+
   render(){
 
-    let menuButtonText = this.state.showMenu ? 'Open Menu' : 'Close Menu'
+    const {showMenu} = this.state
+
+    let menuButtonText = showMenu ? 'Close Menu' : 'Open Menu'
 
     return (
       <View>
@@ -36,11 +72,17 @@ export default class Tour extends Component {
 
         <View
           onEnter={this.toggleMenu}
-          style={styles.menuButton}
-        >
-          <Text style={styles.menuButtonText}>
+          style={styles.menuButton}>
+
+          <Text
+            style={styles.menuButtonText}>
             {menuButtonText}
           </Text>
+        </View>
+
+        <View
+          style={styles.menu}>
+          {showMenu && this.renderOptions()}
         </View>
 
       </View>
@@ -51,9 +93,23 @@ export default class Tour extends Component {
 
 
 const styles = StyleSheet.create({
-  menuButton: {
+
+  menu: {
+    width: 5,
+    height: 1.25,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    layoutOrigin: [0.5,0.5],
     transform: [
       {translate: [0,0,-4]}
+    ]
+  },
+
+  menuButton: {
+    layoutOrigin: [0.5,0.5],
+    transform: [
+      {translate: [-3,0,-4]}
     ],
     backgroundColor: 'white',
     width: 0.8,
@@ -69,6 +125,22 @@ const styles = StyleSheet.create({
   menuButtonText: {
     textAlign: 'center',
     fontSize: 0.2,
+    color: 'black'
+  },
+
+  menuItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 1,
+    height: 1,
+    borderRadius: 0.25,
+    borderWidth: 0.03,
+    backgroundColor: 'white'
+  },
+
+  menuItemText: {
+    fontSize: 0.2,
+    textAlign: 'center',
     color: 'black'
   }
 })
