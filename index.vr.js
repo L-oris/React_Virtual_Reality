@@ -12,20 +12,20 @@ import {
 
 const places = [
   {
-    title: 'Winter Snow',
-    env: 'winter.jpg'
+    title: 'Courtyard',
+    env: 'courtyard.jpg'
+  },
+  {
+    title: 'Station',
+    env: 'station.jpg'
   },
   {
     title: 'Resort',
     env: 'resort.jpg'
   },
   {
-    title: 'Island Garden',
-    env: 'garden.jpg'
-  },
-  {
-    title: 'Abstract',
-    env: 'abstract.jpg'
+    title: 'England',
+    env: 'england.jpg'
   }
 ]
 
@@ -36,7 +36,7 @@ export default class Tour extends Component {
     super(props)
     this.state = {
       showMenu: false,
-      environment: 'pool.jpg'
+      environment: 'courtyard.jpg'
     }
     this.toggleMenu = this.toggleMenu.bind(this)
     this.renderOptions = this.renderOptions.bind(this)
@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
       {translate: [-3,0,-4]}
     ],
     backgroundColor: 'white',
-    width: 0.8,
-    height: 0.8,
+    width: 0.6,
+    height: 0.6,
     borderColor: 'grey',
-    borderWidth: 0.05,
-    borderRadius: 0.2,
+    borderWidth: 0.02,
+    borderRadius: 0.3,
     borderColor: 'green',
     alignItems: 'center',
     justifyContent: 'center'
@@ -132,17 +132,17 @@ const styles = StyleSheet.create({
 
   menuButtonText: {
     textAlign: 'center',
-    fontSize: 0.2,
+    fontSize: 0.15,
     color: 'black'
   },
 
   menuItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 1,
-    height: 1,
-    borderRadius: 0.25,
-    borderWidth: 0.03,
+    width: 0.8,
+    height: 0.8,
+    borderRadius: 0.4,
+    borderWidth: 0.02,
     backgroundColor: 'white'
   },
 
