@@ -12,16 +12,20 @@ import {
 
 const places = [
   {
-    title: 'Winter Snow'
+    title: 'Winter Snow',
+    env: 'winter.jpg'
   },
   {
-    title: 'Resort'
+    title: 'Resort',
+    env: 'resort.jpg'
   },
   {
-    title: 'Island Garden'
+    title: 'Island Garden',
+    env: 'garden.jpg'
   },
   {
-    title: 'Abstract'
+    title: 'Abstract',
+    env: 'abstract.jpg'
   }
 ]
 
@@ -31,7 +35,8 @@ export default class Tour extends Component {
   constructor(props){
     super(props)
     this.state = {
-      showMenu: false
+      showMenu: false,
+      environment: 'pool.jpg'
     }
     this.toggleMenu = this.toggleMenu.bind(this)
     this.renderOptions = this.renderOptions.bind(this)
@@ -49,6 +54,7 @@ export default class Tour extends Component {
         return (
           <View
             key={index}
+            onEnter={()=>this.setState({environment: place.env})}
             style={styles.menuItem}>
             <Text
               style={styles.menuItemText}>
@@ -62,14 +68,15 @@ export default class Tour extends Component {
 
   render(){
 
-    const {showMenu} = this.state
+    const {showMenu,environment} = this.state
 
     let menuButtonText = showMenu ? 'Close Menu' : 'Open Menu'
 
     return (
       <View>
-        <Pano source={asset('pool.jpg')}/>
+        <Pano source={asset(environment)}/>
 
+        {/*TOGGLE MENU BUTTON*/}
         <View
           onEnter={this.toggleMenu}
           style={styles.menuButton}>
@@ -80,6 +87,7 @@ export default class Tour extends Component {
           </Text>
         </View>
 
+        {/*MENU OPTIONS*/}
         <View
           style={styles.menu}>
           {showMenu && this.renderOptions()}
